@@ -1,0 +1,37 @@
+﻿@model IList<Ticket>
+
+<h3>Open Ticket List</h3>
+
+<div class="mt-4 mb-4">
+   <a  <a  asp-action="Create" class="btn btn-primary btn-sm">
+      <i class="bi bi-plus"></i> Create Ticket
+   </a>
+</div>
+
+<table class="table">
+   <thead>
+   <tr>
+      <th>Id</th>
+      <th>Student</th>
+      <th>Issue</th>
+      <th>Created</th>           
+      <th>Actions</th>
+   </tr>
+   </thead>
+   <tbody>
+   @foreach(var t in Model) {
+         <tr>
+         <td>@t.Id</td>
+         <td>@t.Student.Name</td>
+         <td>@t.Issue</td>
+         <td>@t.CreatedOn.ToShortDateString()</td>              
+         <td>
+            <form asp-action="Close">
+               <input type="hidden" name="id" value=@t.Id />
+               <button type="submit" class="btn btn-link"><i class="bi bi-tools mr-2"></i>Close</button>
+            </form>                                          
+         </td>
+      </tr>
+   }
+   </tbody>
+</table>
